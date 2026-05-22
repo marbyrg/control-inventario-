@@ -1,0 +1,101 @@
+#Nombre del estudiante: Mary Gabriela Rodríguez Guerrero
+#Grupo: 442
+#Programa: Ingenieria Multimedia - UNAD
+#Código Fuente: autoria propia 
+#Problema 3
+
+# Control de Inventarios
+# [Código, Nombre, Stock Actual, Stock Mínimo]
+
+inventario = [ 
+    ["101", "Panel", 3, 10],
+    ["102", "Fusible", 15, 20],
+    ["103", "Batería", 2, 6],
+    ["104", "Inversor", 8, 15],
+    ["105", "Regulador", 1, 30]
+]
+
+def calcular_pedido(stock_actual, stock_minimo):
+    
+    if stock_actual < stock_minimo:
+        return stock_minimo - stock_actual
+    else:
+        return 0
+    
+def mostrar_inventario():
+    print("\n=== INVENTARIO ACTUAL ===")
+    for articulo in inventario:
+        print(f"Código: {articulo[0]} ")
+        print(f"Nombre: {articulo[1]} ")
+        print(f"Stock Actual: {articulo[2]} ")
+        print(f"Stock Mínimo: {articulo[3]} \n")
+
+def mostrar_pedidos():
+    print("\n=== LISTA DE REABASTECIMIENTO ===")
+    
+    for articulo in inventario:
+        
+        codigo = articulo[0]
+        nombre = articulo[1]
+        stock_actual = articulo[2]
+        stock_minimo = articulo[3]
+        
+        cantidad_pedir = calcular_pedido(stock_actual, stock_minimo)
+        
+        print(f"\nArtículo: {nombre}")
+        print(f"Código: {codigo}")
+        print(f"Stock Actual: {stock_actual}")
+        if cantidad_pedir > 0:
+            print(f"Cantidad a pedir: {cantidad_pedir}")
+        else:
+            print("No necesita reabastecimiento.")
+
+# Agregar nuevo artículo al inventario
+
+def agregar_articulo():
+    print("\n=== AGREGAR NUEVO ARTÍCULO ===")
+    
+    codigo = int(input("Ingrese el código del artículo: "))
+    nombre = input("Ingrese el nombre del artículo: ")
+    stock_actual = int(input("Ingrese el stock actual del artículo: "))
+    stock_minimo = int(input("Ingrese el stock mínimo del artículo: "))
+    
+    nuevo_articulo = [codigo, nombre, stock_actual, stock_minimo]
+    
+    inventario.append(nuevo_articulo)
+    
+    print("Artículo agregado exitosamente.")
+    
+# Menú principal
+
+def menu():
+    
+    opcion = 0
+    
+    while opcion != 4:
+        
+        print("\n=== MENÚ PRINCIPAL ===")
+        print("1. Mostrar Inventario")
+        print("2. Mostrar Pedidos de Reabastecimiento")
+        print("3. Agregar Nuevo Artículo")
+        print("4. Salir")
+        
+        opcion = int(input("Seleccione una opción: "))
+        
+        if opcion == 1:
+            mostrar_inventario()
+            
+        elif opcion == 2:
+            mostrar_pedidos()
+        
+        elif opcion == 3:
+            agregar_articulo()
+        
+        elif opcion == 4:
+            print("Saliendo del Sistema...")
+            
+        else:
+            print("Por favor, seleccione una opción válida.")
+            
+# Ejecutar el programa
+menu()
