@@ -5,7 +5,7 @@
 #Problema 3
 
 # Control de Inventarios
-# [Código, Nombre, Stock Actual, Stock Mínimo]
+# [Codigo, Nombre, Stock Actual, Stock Mínimo]
 
 inventario = [ 
     ["101", "Panel", 3, 10],
@@ -65,6 +65,32 @@ def agregar_articulo():
     inventario.append(nuevo_articulo)
     
     print("Artículo agregado exitosamente.")
+
+# Función para agregar stock a un artículo existente
+
+def agregar_stock():
+    
+    print("\n=== AGREGAR STOCK ===")
+    
+    codigo_buscar = int(input("Ingrese el código del artículo: "))
+    cantidad_agregar = int(input("Ingrese la cantidad a agregar: "))
+    
+    encontrado = False
+    
+    for articulo in inventario:
+        
+        if articulo[0] == codigo_buscar:
+            
+            articulo[2] += cantidad_agregar
+            
+            print(f"Stock actualizado correctamente. ")
+            print(f"Producto: {articulo[1]} ")
+            print(f"Nuevo Stock Actual: {articulo[2]} ")
+            
+            encontrado = True
+            return
+    if encontrado == False:
+                print("Artículo no encontrado en el inventario.")
     
 # Menú principal
 
@@ -72,13 +98,14 @@ def menu():
     
     opcion = 0
     
-    while opcion != 4:
+    while opcion != 5:
         
         print("\n=== MENÚ PRINCIPAL ===")
         print("1. Mostrar Inventario")
         print("2. Mostrar Pedidos de Reabastecimiento")
         print("3. Agregar Nuevo Artículo")
-        print("4. Salir")
+        print("4. Agregar Stock a Artículo")
+        print("5. Salir")
         
         opcion = int(input("Seleccione una opción: "))
         
@@ -90,8 +117,11 @@ def menu():
         
         elif opcion == 3:
             agregar_articulo()
-        
+            
         elif opcion == 4:
+            agregar_stock()
+        
+        elif opcion == 5:
             print("Saliendo del Sistema...")
             
         else:
