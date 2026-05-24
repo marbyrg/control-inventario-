@@ -70,7 +70,7 @@ def agregar_articulo():
 
 def agregar_stock():
     
-    print("\n=== AGREGAR STOCK ===")
+    print("\n=== AÑADIR STOCK ===")
     
     codigo_buscar = int(input("Ingrese el código del artículo: "))
     cantidad_agregar = int(input("Ingrese la cantidad a agregar: "))
@@ -79,7 +79,7 @@ def agregar_stock():
     
     for articulo in inventario:
         
-        if articulo[0] == codigo_buscar:
+        if int(articulo[0]) == codigo_buscar:
             
             articulo[2] += cantidad_agregar
             
@@ -88,7 +88,7 @@ def agregar_stock():
             print(f"Nuevo Stock Actual: {articulo[2]} ")
             
             encontrado = True
-            return
+
     if encontrado == False:
                 print("Artículo no encontrado en el inventario.")
     
